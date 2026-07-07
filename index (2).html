@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlanHub – Find Construction Bids Near You | $99/month, No Contract</title>
+<meta name="description" content="Get in front of GCs posting jobs in your area. Access thousands of active construction projects for less than $4/day. Cancel anytime — no annual contract required.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ph-teal:        #00B4A2;
+  --ph-teal-dark:   #009688;
+  --ph-teal-light:  #E6F7F6;
+  --ph-teal-mid:    #B2E8E4;
+  --ph-navy:        #0A1628;
+  --ph-navy-mid:    #1B2B4B;
+  --ph-navy-soft:   #243450;
+  --ph-white:       #FFFFFF;
+  --ph-surface:     #F5F7FA;
+  --ph-border:      #E2E8F0;
+  --ph-slate:       #4A5568;
+  --ph-muted:       #8A97A8;
+  --ph-green:       #22C55E;
+  --ph-green-bg:    #DCFCE7;
+  --ph-red:         #EF4444;
+  --ph-red-bg:      #FEE2E2;
+  --ph-yellow:      #F59E0B;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--ph-white);
+  color: var(--ph-navy);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 68px;
+  border-bottom: 1px solid var(--ph-border);
+  background: var(--ph-white);
+  position: sticky; top: 0; z-index: 100;
+}
+.logo {
+  display: flex; align-items: center;
+  font-size: 20px; font-weight: 900; color: var(--ph-navy);
+  letter-spacing: -0.5px; text-decoration: none;
+}
+.logo-mark {
+  width: 30px; height: 30px; margin-right: 9px;
+  background: var(--ph-teal); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 18px; height: 18px; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-login {
+  font-size: 14px; font-weight: 500; color: var(--ph-slate);
+  background: none; border: none; cursor: pointer; padding: 8px 12px;
+  text-decoration: none;
+}
+.nav-login:hover { color: var(--ph-navy); }
+.nav-cta {
+  background: var(--ph-teal); color: var(--ph-white);
+  border: none; padding: 10px 20px; border-radius: 8px;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+.nav-cta:hover { background: var(--ph-teal-dark); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--ph-navy);
+  padding: 88px 40px 80px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,180,162,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,162,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-glow {
+  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 500px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,180,162,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,180,162,0.12);
+  border: 1px solid rgba(0,180,162,0.25);
+  color: var(--ph-teal);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+}
+.pulse {
+  width: 7px; height: 7px; background: var(--ph-teal);
+  border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+.hero h1 {
+  position: relative;
+  font-size: clamp(36px, 5.5vw, 58px); font-weight: 900;
+  color: var(--ph-white); line-height: 1.07; letter-spacing: -2px;
+  max-width: 800px; margin: 0 auto 22px;
+}
+.hero h1 em { font-style: normal; color: var(--ph-teal); }
+.hero-sub {
+  position: relative;
+  font-size: 18px; color: #8FA3BF;
+  max-width: 500px; margin: 0 auto 16px; line-height: 1.65;
+}
+.hero-sub strong { color: var(--ph-white); font-weight: 600; }
+.hero-price-note {
+  position: relative;
+  font-size: 15px; color: rgba(0,180,162,0.8); font-weight: 600;
+  margin-bottom: 38px; display: block;
+}
+.hero-price-note span { color: var(--ph-teal); font-weight: 800; }
+
+.cta-group {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap; margin-bottom: 52px;
+}
+.btn-primary {
+  background: var(--ph-teal); color: var(--ph-white);
+  border: none; padding: 17px 38px; border-radius: 10px;
+  font-weight: 800; font-size: 17px; cursor: pointer;
+  letter-spacing: -0.2px; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: var(--ph-teal-dark); }
+.btn-outline {
+  background: transparent; color: #8FA3BF;
+  border: 1px solid rgba(255,255,255,0.18); padding: 17px 28px;
+  border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.35); color: var(--ph-white); }
+
+.hero-trust {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  gap: 28px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #5C7A99; font-weight: 500; }
+.trust-tick {
+  width: 16px; height: 16px; background: var(--ph-teal); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.trust-tick svg { width: 9px; height: 9px; }
+
+/* ── TICKER ── */
+.ticker { background: var(--ph-teal); padding: 13px 0; overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-flex; gap: 40px; animation: scroll 30s linear infinite; }
+.ticker-item { color: var(--ph-white); font-size: 13px; font-weight: 600; flex-shrink: 0; }
+.ticker-item span { opacity: 0.72; font-weight: 400; margin-left: 4px; }
+@keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  display: flex; justify-content: center;
+  border-bottom: 1px solid var(--ph-border);
+  flex-wrap: wrap;
+}
+.stat {
+  flex: 1; min-width: 140px; text-align: center;
+  padding: 28px 16px; border-right: 1px solid var(--ph-border);
+}
+.stat:last-child { border-right: none; }
+.stat-n { font-size: 30px; font-weight: 900; color: var(--ph-navy); letter-spacing: -1px; line-height: 1; }
+.stat-n em { font-style: normal; color: var(--ph-teal); }
+.stat-l { font-size: 12px; color: var(--ph-muted); margin-top: 4px; font-weight: 500; }
+
+/* ── SHARED LAYOUT ── */
+.section { padding: 88px 40px; max-width: 1000px; margin: 0 auto; }
+.section-center { text-align: center; }
+.section-full { padding: 88px 40px; }
+.eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--ph-teal); margin-bottom: 10px;
+}
+h2 {
+  font-size: clamp(28px, 3.8vw, 42px); font-weight: 900;
+  color: var(--ph-navy); letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 14px;
+}
+.section-sub {
+  font-size: 17px; color: var(--ph-slate); max-width: 560px;
+  margin: 0 auto 52px; line-height: 1.65;
+}
+
+/* ── HOW IT WORKS ── */
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px; background: var(--ph-border);
+  border: 1px solid var(--ph-border); border-radius: 16px; overflow: hidden;
+}
+.step { background: var(--ph-white); padding: 34px 28px; }
+.step-num { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--ph-teal); margin-bottom: 14px; }
+.step-icon { font-size: 28px; margin-bottom: 12px; }
+.step h3 { font-size: 16px; font-weight: 700; color: var(--ph-navy); margin-bottom: 8px; letter-spacing: -0.2px; }
+.step p { font-size: 13px; color: var(--ph-slate); line-height: 1.65; }
+
+/* ── TRADE / FEED ── */
+.trade-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px; margin-bottom: 28px;
+}
+.trade-card {
+  border: 2px solid var(--ph-border); border-radius: 12px;
+  padding: 20px 12px; text-align: center; cursor: pointer;
+  background: var(--ph-white); transition: all 0.15s;
+}
+.trade-card:hover, .trade-card.active {
+  border-color: var(--ph-teal); background: var(--ph-teal-light);
+}
+.trade-icon { font-size: 28px; margin-bottom: 7px; }
+.trade-name { font-size: 13px; font-weight: 600; color: var(--ph-navy); }
+.trade-count { font-size: 11px; color: var(--ph-muted); margin-top: 2px; }
+
+.project-feed {
+  background: var(--ph-surface); border: 1px solid var(--ph-border);
+  border-radius: 14px; overflow: hidden;
+}
+.feed-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 22px; border-bottom: 1px solid var(--ph-border); background: var(--ph-white);
+}
+.feed-title { font-size: 14px; font-weight: 700; color: var(--ph-navy); }
+.feed-sub { font-size: 12px; color: var(--ph-muted); margin-top: 2px; }
+.live-badge { background: #DCFCE7; color: #15803D; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; white-space: nowrap; }
+.proj-row {
+  display: flex; align-items: center; padding: 15px 22px;
+  border-bottom: 1px solid var(--ph-border); gap: 14px; background: var(--ph-white);
+}
+.proj-dot { width: 8px; height: 8px; background: var(--ph-teal); border-radius: 50%; flex-shrink: 0; }
+.proj-info { flex: 1; min-width: 0; }
+.proj-name { font-size: 14px; font-weight: 600; color: var(--ph-navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.proj-meta { font-size: 12px; color: var(--ph-muted); margin-top: 2px; }
+.proj-val { font-size: 13px; font-weight: 700; color: var(--ph-navy); text-align: right; white-space: nowrap; }
+.proj-val span { display: block; font-size: 11px; font-weight: 400; color: var(--ph-muted); }
+.feed-lock {
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px 22px; gap: 16px; flex-wrap: wrap;
+  background: var(--ph-teal-light); border-top: 1px solid var(--ph-teal-mid);
+}
+.lock-text { font-size: 14px; color: var(--ph-navy-mid); }
+.lock-text strong { color: var(--ph-teal-dark); }
+.btn-unlock {
+  background: var(--ph-teal); color: var(--ph-white);
+  border: none; padding: 10px 22px; border-radius: 8px;
+  font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.btn-unlock:hover { background: var(--ph-teal-dark); }
+
+/* ── COMPETITOR TABLE ── */
+.comp-wrap {
+  background: var(--ph-surface); border: 1px solid var(--ph-border);
+  border-radius: 16px; overflow-x: auto;
+}
+.comp-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 600px; }
+.comp-table th {
+  padding: 14px 18px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--ph-muted);
+  background: var(--ph-surface); border-bottom: 1px solid var(--ph-border); text-align: left;
+}
+.comp-table th.ph { color: var(--ph-teal); background: var(--ph-teal-light); }
+.comp-table td { padding: 15px 18px; border-bottom: 1px solid var(--ph-border); color: var(--ph-slate); vertical-align: middle; }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table td:first-child { font-weight: 600; color: var(--ph-navy); font-size: 13px; }
+.comp-table td.ph { background: rgba(0,180,162,0.04); color: var(--ph-navy); font-weight: 600; }
+.comp-table tr:hover td { background: #FAFBFC; }
+.comp-table tr:hover td.ph { background: rgba(0,180,162,0.07); }
+.badge-win { display: inline-flex; align-items: center; background: var(--ph-teal-light); color: var(--ph-teal-dark); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+.badge-bad { display: inline-flex; align-items: center; background: var(--ph-red-bg); color: var(--ph-red); font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.ck { color: var(--ph-teal); font-weight: 800; }
+.cx { color: var(--ph-red); font-weight: 700; }
+
+/* ── QUALIFIER ── */
+.qualifier-wrap { padding: 0 40px 88px; max-width: 1000px; margin: 0 auto; }
+.qualifier {
+  background: var(--ph-navy); border-radius: 16px; padding: 48px 44px;
+  display: flex; align-items: center; gap: 44px; flex-wrap: wrap;
+  border: 1px solid rgba(0,180,162,0.2);
+}
+.q-text { flex: 1; min-width: 260px; }
+.q-text h3 { color: var(--ph-white); font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+.q-text h3 em { font-style: normal; color: var(--ph-teal); }
+.q-text p { color: #7A92AD; font-size: 14px; line-height: 1.7; }
+.q-action { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+.q-check {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 14px 18px; cursor: pointer;
+}
+.q-check input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--ph-teal); cursor: pointer; flex-shrink: 0; }
+.q-check label { color: var(--ph-white); font-size: 14px; font-weight: 500; cursor: pointer; }
+.q-btn {
+  background: var(--ph-teal); color: var(--ph-white); border: none;
+  padding: 15px 28px; border-radius: 10px; font-weight: 700; font-size: 15px; cursor: pointer;
+}
+.q-btn:hover { background: var(--ph-teal-dark); }
+
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px; margin-bottom: 20px;
+}
+.plan {
+  border: 2px solid var(--ph-border); border-radius: 16px;
+  padding: 34px 30px; background: var(--ph-white); position: relative;
+}
+.plan.featured { border-color: var(--ph-teal); }
+.plan-badge {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--ph-teal); color: var(--ph-white);
+  font-size: 11px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 100px; white-space: nowrap;
+}
+.plan-name { font-size: 12px; font-weight: 700; color: var(--ph-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 18px; }
+.plan-price { font-size: 50px; font-weight: 900; color: var(--ph-navy); letter-spacing: -2.5px; line-height: 1; margin-bottom: 4px; }
+.plan-price sup { font-size: 22px; vertical-align: top; margin-top: 10px; letter-spacing: 0; font-weight: 700; }
+.plan-price sub { font-size: 16px; letter-spacing: 0; font-weight: 500; color: var(--ph-muted); }
+.plan-note { font-size: 13px; color: var(--ph-muted); margin-bottom: 28px; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 30px; }
+.plan-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; color: var(--ph-slate); }
+.plan-features li::before { content: '✓'; color: var(--ph-teal); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.plan-btn {
+  width: 100%; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 15px;
+  cursor: pointer; border: 2px solid var(--ph-navy); background: transparent; color: var(--ph-navy);
+}
+.plan-btn.featured { background: var(--ph-teal); border-color: var(--ph-teal); color: var(--ph-white); }
+.plan-btn:hover { opacity: 0.85; }
+.pricing-note {
+  text-align: center; font-size: 13px; color: var(--ph-muted);
+  background: var(--ph-surface); border: 1px solid var(--ph-border);
+  border-radius: 10px; padding: 16px;
+}
+.pricing-note strong { color: var(--ph-navy); }
+
+/* ── REVIEWS ── */
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-top: 48px;
+}
+.review {
+  background: var(--ph-white); border: 1px solid var(--ph-border);
+  border-radius: 14px; padding: 26px;
+}
+.stars { color: var(--ph-yellow); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.review-body { font-size: 14px; color: var(--ph-slate); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+.reviewer { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--ph-teal-light); border: 2px solid var(--ph-teal-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: var(--ph-teal-dark); flex-shrink: 0;
+}
+.rev-name { font-size: 13px; font-weight: 700; color: var(--ph-navy); }
+.rev-role { font-size: 12px; color: var(--ph-muted); }
+
+/* ── FINAL CTA ── */
+.final {
+  background: var(--ph-navy); padding: 96px 40px; text-align: center;
+  border-top: 1px solid rgba(0,180,162,0.15);
+}
+.final h2 { color: var(--ph-white); margin-bottom: 16px; }
+.final h2 em { font-style: normal; color: var(--ph-teal); }
+.final p { color: #7A92AD; font-size: 18px; max-width: 460px; margin: 0 auto 38px; line-height: 1.65; }
+.final-btn {
+  background: var(--ph-teal); color: var(--ph-white); border: none;
+  padding: 18px 52px; border-radius: 10px; font-weight: 800; font-size: 18px; cursor: pointer;
+}
+.final-btn:hover { background: var(--ph-teal-dark); }
+.final-trust {
+  margin-top: 22px; font-size: 13px; color: #3E5A74;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ph-surface); border-top: 1px solid var(--ph-border);
+  padding: 28px 40px; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.footer-left { font-size: 13px; color: var(--ph-muted); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 13px; color: var(--ph-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--ph-teal); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .nav { padding: 0 16px; }
+  .hero { padding: 60px 20px 56px; }
+  .section { padding: 60px 20px; }
+  .qualifier-wrap { padding: 0 20px 60px; }
+  .qualifier { padding: 32px 24px; gap: 28px; }
+  .final { padding: 64px 20px; }
+  .footer { padding: 20px 20px; flex-direction: column; align-items: flex-start; }
+  .stats-bar { flex-direction: column; }
+  .stat { border-right: none; border-bottom: 1px solid var(--ph-border); }
+  .stat:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="6" height="6" rx="1.5" fill="white"/>
+        <rect x="10" y="2" width="6" height="6" rx="1.5" fill="white" opacity="0.6"/>
+        <rect x="2" y="10" width="6" height="6" rx="1.5" fill="white" opacity="0.6"/>
+        <rect x="10" y="10" width="6" height="6" rx="1.5" fill="white" opacity="0.3"/>
+      </svg>
+    </div>
+    PlanHub
+  </a>
+  <div class="nav-right">
+    <a href="https://access.planhub.com/login" class="nav-login">Log in</a>
+    <a href="#pricing" class="nav-cta">Try it free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">
+    <div class="pulse"></div>
+    147 new projects posted in the last 24 hours
+  </div>
+  <h1>Find your next job.<br><em>Pay month to month.</em><br>No annual contract.</h1>
+  <p class="hero-sub">GCs are posting jobs in your area right now. Get access for <strong>less than $4/day</strong> — cancel anytime.</p>
+  <span class="hero-price-note">Free to register &amp; browse &nbsp;·&nbsp; Unlock full access from <span>$99/month</span> &nbsp;·&nbsp; No credit card to start</span>
+  <div class="cta-group">
+    <a href="#pricing" class="btn-primary">Try it free — see projects near you →</a>
+    <a href="#compare" class="btn-outline">How we compare</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item">
+      <div class="trust-tick"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Cancel anytime
+    </div>
+    <div class="trust-item">
+      <div class="trust-tick"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      No annual contract
+    </div>
+    <div class="trust-item">
+      <div class="trust-tick"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Up in 2 minutes
+    </div>
+    <div class="trust-item">
+      <div class="trust-tick"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      50,000+ active GCs
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">🔨 Retail buildout · Atlanta, GA<span>$380K · 3 bids open</span></div>
+    <div class="ticker-item">⚡ Electrical rough-in · Dallas, TX<span>$95K · just posted</span></div>
+    <div class="ticker-item">🔧 Plumbing · Orlando, FL<span>$210K · 5 subs needed</span></div>
+    <div class="ticker-item">🏗️ Framing · Phoenix, AZ<span>$650K · 2 bids open</span></div>
+    <div class="ticker-item">❄️ HVAC buildout · Houston, TX<span>$175K · just posted</span></div>
+    <div class="ticker-item">🧱 Concrete flatwork · Charlotte, NC<span>$320K · 4 bids open</span></div>
+    <div class="ticker-item">🪚 Drywall & finishes · Tampa, FL<span>$88K · just posted</span></div>
+    <div class="ticker-item">🔨 Retail buildout · Atlanta, GA<span>$380K · 3 bids open</span></div>
+    <div class="ticker-item">⚡ Electrical rough-in · Dallas, TX<span>$95K · just posted</span></div>
+    <div class="ticker-item">🔧 Plumbing · Orlando, FL<span>$210K · 5 subs needed</span></div>
+    <div class="ticker-item">🏗️ Framing · Phoenix, AZ<span>$650K · 2 bids open</span></div>
+    <div class="ticker-item">❄️ HVAC buildout · Houston, TX<span>$175K · just posted</span></div>
+    <div class="ticker-item">🧱 Concrete flatwork · Charlotte, NC<span>$320K · 4 bids open</span></div>
+    <div class="ticker-item">🪚 Drywall & finishes · Tampa, FL<span>$88K · just posted</span></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">9,<em>400</em>+</div><div class="stat-l">Active projects this week</div></div>
+  <div class="stat"><div class="stat-n">50<em>K</em>+</div><div class="stat-l">General contractors posting</div></div>
+  <div class="stat"><div class="stat-n"><em>$99</em></div><div class="stat-l">Starting price, month to month</div></div>
+  <div class="stat"><div class="stat-n">88<em>%</em></div><div class="stat-l">Of projects receive bid coverage</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section section-center">
+  <div class="eyebrow">How it works</div>
+  <h2>From search to bid in one afternoon</h2>
+  <p class="section-sub">No sales call. No demo. No waiting. Sign up, pick your trade, and start finding jobs.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">Step 01</div>
+      <div class="step-icon">🔍</div>
+      <h3>Register free</h3>
+      <p>Create your account in 2 minutes. Personal email works. We confirm your trade and company size after.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">Step 02</div>
+      <div class="step-icon">📍</div>
+      <h3>Browse your projects</h3>
+      <p>See active jobs in your area and trade — project value, GC name, and bid deadline visible immediately.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">Step 03</div>
+      <div class="step-icon">🔓</div>
+      <h3>Unlock plans</h3>
+      <p>Start at $99/month. Download full bid docs, contact the GC directly, and submit your number.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">Step 04</div>
+      <div class="step-icon">🏆</div>
+      <h3>Win. Pause. Repeat.</h3>
+      <p>Work slow? Pause or cancel anytime — no phone calls, no contracts, no penalties.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- COMPETITOR TABLE -->
+<section class="section section-center" id="compare">
+  <div class="eyebrow">Why PlanHub</div>
+  <h2>The other guys charge $3,000+/year.<br>We don't.</h2>
+  <p class="section-sub">ConstructConnect, Dodge, and BuildingConnected were built for large GCs and enterprise. Their pricing proves it.</p>
+  <div class="comp-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="ph">✦ PlanHub</th>
+          <th>ConstructConnect</th>
+          <th>Dodge Analytics</th>
+          <th>BuildingConnected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Starting price</td>
+          <td class="ph"><span class="badge-win">✓ $99/month</span></td>
+          <td><span class="badge-bad">~$3,600/yr</span></td>
+          <td><span class="badge-bad">~$3,000/yr</span></td>
+          <td><span class="badge-bad">~$2,400/yr</span></td>
+        </tr>
+        <tr>
+          <td>Month-to-month option</td>
+          <td class="ph"><span class="ck">✓</span> Yes, cancel anytime</td>
+          <td><span class="cx">✗</span> Annual only</td>
+          <td><span class="cx">✗</span> Annual only</td>
+          <td><span class="cx">✗</span> Annual only</td>
+        </tr>
+        <tr>
+          <td>Self-serve signup</td>
+          <td class="ph"><span class="ck">✓</span> 2 minutes, no demo</td>
+          <td><span class="cx">✗</span> Sales call required</td>
+          <td><span class="cx">✗</span> Demo required</td>
+          <td><span class="cx">✗</span> Sales process</td>
+        </tr>
+        <tr>
+          <td>Small job coverage</td>
+          <td class="ph"><span class="ck">✓</span> 86% of projects under $5M</td>
+          <td><span class="cx">✗</span> Enterprise focused</td>
+          <td><span class="cx">✗</span> Large projects only</td>
+          <td>Partial</td>
+        </tr>
+        <tr>
+          <td>Built for small subs</td>
+          <td class="ph"><span class="ck">✓</span> Designed for you</td>
+          <td><span class="cx">✗</span> Enterprise first</td>
+          <td><span class="cx">✗</span> GC-first platform</td>
+          <td><span class="cx">✗</span> Large subs only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--ph-muted);margin-top:14px;text-align:center">Competitor pricing based on publicly available estimates. Actual pricing may vary.</p>
+</section>
+
+
+
+<!-- PRICING -->
+<section class="section section-center" id="pricing">
+  <div class="eyebrow">Simple pricing</div>
+  <h2>Try it free. No credit card.<br>Cancel anytime.</h2>
+  <p class="section-sub">Register free and browse projects immediately. Unlock full access — bid docs, GC contacts, plan downloads — for $99/month when you're ready. No contracts, no sales calls.</p>
+
+  <div style="max-width:480px; margin:0 auto 20px;">
+    <div class="plan featured" style="text-align:left;">
+      <div class="plan-badge">New — month to month</div>
+
+      <!-- Crossed-out annual anchor -->
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+        <div style="font-size:13px; color:var(--ph-muted); font-weight:500;">Others charge:</div>
+        <div style="font-size:22px; font-weight:900; color:var(--ph-muted); text-decoration:line-through; letter-spacing:-0.5px;">$2,000<span style="font-size:14px;font-weight:500;">/yr</span></div>
+        <div style="background:var(--ph-red-bg); color:var(--ph-red); font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; white-space:nowrap;">annual contract</div>
+      </div>
+
+      <div class="plan-name">Your price — monthly, no contract</div>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:6px;">
+        <div class="plan-price"><sup>$</sup>99<sub>/mo</sub></div>
+        <div style="font-size:15px; color:var(--ph-teal); font-weight:700;">Save 40%+ vs annual plans</div>
+      </div>
+      <div class="plan-note">Less than $4/day. Cancel anytime — no calls, no penalties.</div>
+
+      <ul class="plan-features">
+        <li>Full access to all active projects in your area</li>
+        <li>Download bid documents &amp; full plan sets</li>
+        <li>Direct GC contact information</li>
+        <li>Filter by trade, location &amp; project value</li>
+        <li>Bid history &amp; project tracking tools</li>
+        <li>No annual contract — month to month only</li>
+      </ul>
+
+      <button class="plan-btn featured" style="font-size:17px; padding:16px;" onclick="window.location.href='https://access.planhub.com/signup/create-account'">Try it free — no credit card →</button>
+
+      <div style="margin-top:16px; display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--ph-muted); display:flex; align-items:center; gap:5px;">
+          <span style="color:var(--ph-teal); font-weight:800;">✓</span> No setup fee
+        </span>
+        <span style="font-size:12px; color:var(--ph-muted); display:flex; align-items:center; gap:5px;">
+          <span style="color:var(--ph-teal); font-weight:800;">✓</span> Instant access
+        </span>
+        <span style="font-size:12px; color:var(--ph-muted); display:flex; align-items:center; gap:5px;">
+          <span style="color:var(--ph-teal); font-weight:800;">✓</span> Cancel anytime
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-note">
+    <strong>Free forever:</strong> Registration · Project browsing &amp; preview · Trade &amp; location filters
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <div class="eyebrow" style="text-align:center">Real results</div>
+  <h2 style="text-align:center">Subs like you are winning jobs every week</h2>
+  <div class="reviews-grid">
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="review-body">"I was paying $3,200/year with ConstructConnect and barely using it. Switched to PlanHub last month — found two jobs in the first two weeks. Night and day difference."</p>
+      <div class="reviewer"><div class="avatar">MR</div><div><div class="rev-name">Mike R.</div><div class="rev-role">Electrical · Atlanta, GA · 3 employees</div></div></div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="review-body">"I do seasonal work — I don't need leads in December. Being able to pay month to month instead of a full year up front changes everything for me."</p>
+      <div class="reviewer"><div class="avatar">JT</div><div><div class="rev-name">Jason T.</div><div class="rev-role">Framing · Tampa, FL · Solo operator</div></div></div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="review-body">"Dodge wanted $3k up front and a whole sales pitch. I signed up for PlanHub on my phone during lunch. Done in five minutes. First bid submitted that afternoon."</p>
+      <div class="reviewer"><div class="avatar">DL</div><div><div class="rev-name">Darnell L.</div><div class="rev-role">Plumbing · Houston, TX · 2 employees</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>GCs are posting jobs right now.<br><em>Your competitors are already here.</em></h2>
+  <p>Start for $99 this month. Cancel if it's not working. No risk.</p>
+  <button class="final-btn" onclick="window.location.href='https://access.planhub.com/signup/create-account'">Try it free — no credit card →</button>
+  <div class="final-trust">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#2D4A62"/><path d="M4 7l2 2 4-4" stroke="#5C7A99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    No annual contract &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Takes 2 minutes
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 PlanHub · US-Based Support: 1-866-752-6482</div>
+  <div class="footer-links">
+    <a href="https://planhub.com/terms">Terms</a>
+    <a href="https://planhub.com/privacy-policy">Privacy</a>
+    <a href="https://planhub.com/faq">FAQ</a>
+  </div>
+</footer>
+
+<script>
+const trades = {
+  electrical: { title:'Electrical — this week', sub:'Showing 3 of 312 active projects near you', count:'47 more projects', rows:[
+    {name:'Medical office electrical rough-in', meta:'Orlando, FL · Bid deadline: Jul 14', val:'$185K', badge:'4 bids open'},
+    {name:'Retail strip center power & lighting', meta:'Atlanta, GA · Bid deadline: Jul 16', val:'$92K', badge:'2 bids open'},
+    {name:'Warehouse distribution electrical', meta:'Dallas, TX · Bid deadline: Jul 18', val:'$340K', badge:'6 bids open'}
+  ]},
+  plumbing: { title:'Plumbing — this week', sub:'Showing 3 of 284 active projects near you', count:'41 more projects', rows:[
+    {name:'Restaurant buildout plumbing rough', meta:'Houston, TX · Bid deadline: Jul 13', val:'$78K', badge:'3 bids open'},
+    {name:'Multi-family residential plumbing', meta:'Phoenix, AZ · Bid deadline: Jul 15', val:'$420K', badge:'5 bids open'},
+    {name:'Commercial kitchen remodel', meta:'Miami, FL · Bid deadline: Jul 17', val:'$115K', badge:'Just posted'}
+  ]},
+  framing: { title:'Framing — this week', sub:'Showing 3 of 198 active projects near you', count:'33 more projects', rows:[
+    {name:'Apartment complex framing Phase 2', meta:'Tampa, FL · Bid deadline: Jul 15', val:'$1.1M', badge:'3 bids open'},
+    {name:'Retail buildout framing & blocking', meta:'Nashville, TN · Bid deadline: Jul 16', val:'$95K', badge:'2 bids open'},
+    {name:'Single-family custom home framing', meta:'Charlotte, NC · Bid deadline: Jul 19', val:'$210K', badge:'4 bids open'}
+  ]},
+  concrete: { title:'Concrete — this week', sub:'Showing 3 of 176 active projects near you', count:'28 more projects', rows:[
+    {name:'Tilt-up warehouse slab', meta:'Dallas, TX · Bid deadline: Jul 14', val:'$780K', badge:'5 bids open'},
+    {name:'Parking structure concrete', meta:'Denver, CO · Bid deadline: Jul 17', val:'$2.1M', badge:'3 bids open'},
+    {name:'Retail foundation & flatwork', meta:'Austin, TX · Bid deadline: Jul 18', val:'$145K', badge:'Just posted'}
+  ]},
+  hvac: { title:'HVAC — this week', sub:'Showing 3 of 241 active projects near you', count:'38 more projects', rows:[
+    {name:'Office buildout HVAC 12,000 sqft', meta:'Atlanta, GA · Bid deadline: Jul 13', val:'$165K', badge:'4 bids open'},
+    {name:'Retail chain HVAC replacement', meta:'Houston, TX · Bid deadline: Jul 16', val:'$88K', badge:'2 bids open'},
+    {name:'Industrial facility mechanical', meta:'Chicago, IL · Bid deadline: Jul 20', val:'$550K', badge:'6 bids open'}
+  ]},
+  drywall: { title:'Drywall — this week', sub:'Showing 3 of 155 active projects near you', count:'22 more projects', rows:[
+    {name:'Hotel renovation drywall & finishes', meta:'Orlando, FL · Bid deadline: Jul 15', val:'$320K', badge:'3 bids open'},
+    {name:'Medical office interior buildout', meta:'Phoenix, AZ · Bid deadline: Jul 17', val:'$97K', badge:'Just posted'},
+    {name:'Mixed-use residential drywall', meta:'Austin, TX · Bid deadline: Jul 19', val:'$480K', badge:'5 bids open'}
+  ]}
+};
+
+function setTrade(el, key) {
+  document.querySelectorAll('.trade-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const d = trades[key];
+  document.getElementById('feed-title').textContent = d.title;
+  document.getElementById('feed-sub').textContent = d.sub;
+  document.getElementById('lock-count').textContent = d.count;
+  document.getElementById('feed-rows').innerHTML = d.rows.map(r => `
+    <div class="proj-row">
+      <div class="proj-dot"></div>
+      <div class="proj-info">
+        <div class="proj-name">${r.name}</div>
+        <div class="proj-meta">${r.meta}</div>
+      </div>
+      <div class="proj-val">${r.val}<span>${r.badge}</span></div>
+    </div>`).join('');
+}
+
+function qualChange(cb) {
+  const btn = document.getElementById('q-cta');
+  if (cb.checked) {
+    btn.textContent = 'Unlock $99/month rate →';
+    btn.style.background = '#22C55E';
+  } else {
+    btn.textContent = 'Confirm & see my price →';
+    btn.style.background = 'var(--ph-teal)';
+  }
+}
+
+setTrade(document.querySelector('.trade-card.active'), 'electrical');
+</script>
+</body>
+</html>
